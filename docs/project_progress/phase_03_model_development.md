@@ -12,34 +12,72 @@ To develop, train, and evaluate machine learning and deep learning models for In
 
 ---
 
-## Planned Activities
+## Progress Made
 
-### Feature Extraction
+### Feature Preparation
 
-* Extract meaningful features from the prepared dataset.
-* Evaluate landmark-based and image-based representations.
+* Generated landmark-based features from the processed dataset.
+* Prepared training data for sequence-based learning models.
 
-### Model Training
+### Initial Model Training
 
-Potential models include:
+* Implemented an LSTM-based architecture.
+* Trained the model on the prepared dataset.
+* Achieved an initial accuracy of approximately 94%.
 
-* CNN
-* CNN + LSTM
-* GRU-based architectures
-* MediaPipe + Machine Learning pipelines
+### Evaluation
 
-### Model Evaluation
+Initial evaluation highlighted the need for additional performance metrics beyond accuracy.
 
-Evaluate performance using:
+Future evaluations will include:
 
-* Accuracy
 * Precision
 * Recall
-* F1 Score
-* Confusion Matrix
+* F1-Score
 
 ---
 
-## Expected Outcome
+## Challenges Identified
 
-A trained sign language recognition model capable of accurately identifying ISL gestures and supporting future real-time deployment.
+### Limited Dataset Size
+
+The available dataset contained approximately 5000 samples, which may be insufficient for robust sequence-model training.
+
+### Overfitting
+
+The model showed indications of overfitting during training.
+
+### Data Augmentation Bias
+
+Data augmentation was applied to increase dataset size. Further experiments are required to determine whether augmentation introduces bias or artificially influences performance.
+
+---
+
+## Current Focus
+
+## Current Focus
+
+* Establish a baseline using the non-augmented dataset.
+* Compare augmented and non-augmented performance.
+* Explore different LSTM architectures and sequence-learning approaches.
+* Research augmentation techniques suitable for sign language datasets.
+* Investigate additional publicly available datasets.
+* Expand available training data.
+
+---
+
+## Next Steps
+
+* Calculate Precision, Recall, and F1-Score.
+* Train and evaluate the model without augmentation.
+* Compare augmented and non-augmented results.
+* Research and experiment with different LSTM architectures.
+* Study augmentation techniques suitable for sign language recognition.
+* Collect and integrate additional datasets.
+* Continue model experimentation and performance evaluation.
+
+---
+
+## Outcome So Far
+
+The initial model development phase has successfully established a working training pipeline and provided a foundation for future experimentation and optimization.
