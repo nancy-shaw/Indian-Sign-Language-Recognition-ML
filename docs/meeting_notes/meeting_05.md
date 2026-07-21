@@ -1,105 +1,128 @@
 # Meeting 05
 
-**Date:** 07 July 2026
+**Date:** 09 July 2026
 
 ## Objective
 
-To present the progress made after the previous meeting, discuss improvements implemented based on earlier feedback, and compare the performance of multiple deep learning architectures for Indian Sign Language recognition.
+To present the progress achieved after implementing the recommendations from the previous meeting, compare the performance of multiple deep learning architectures, and discuss the next phase of the research work.
 
 ---
 
 ## Progress Since the Previous Meeting
 
-Following the recommendations from the previous meeting, the project team revisited the complete training pipeline.
+Following the recommendations from the previous meeting, the team revisited the complete training pipeline.
 
-During experimentation, it was observed that the initial landmark augmentation strategy was not producing the desired improvements and was affecting model performance.
+During experimentation, it was observed that the initial landmark augmentation strategy was not producing the desired improvements and negatively affected model performance. The augmentation pipeline was therefore redesigned and implemented correctly while keeping the remaining preprocessing pipeline unchanged.
 
-The augmentation pipeline was therefore redesigned and implemented correctly while keeping the remaining preprocessing pipeline unchanged. This resulted in improved training stability and significantly better model performance across all architectures.
+Additional improvements included:
 
-The preprocessing steps maintained across all experiments included:
+* Incorporation of Layer Normalization.
+* Introduction of Label Smoothing.
+* Maintaining identical preprocessing across all models for fair comparison.
 
-* Landmark extraction
+The common preprocessing pipeline consisted of:
+
+* MediaPipe landmark extraction
 * Wrist-relative coordinate normalization
 * Scaling
-* Coordinate-level augmentation
+* Coordinate-level data augmentation
 * Consistent train-validation-test split
 
-This ensured that all model comparisons were conducted under identical data preparation conditions.
+This ensured that every model was trained and evaluated under identical data preparation conditions.
 
 ---
 
 ## Model Development
 
-The team divided the experimentation among different temporal architectures.
+The experimentation was divided among different temporal architectures.
 
-* Nancy Shaw – Temporal Convolutional Network (TCN)
-* Muskan Sah – GRU and BiGRU
-* Muskan – LSTM and BiLSTM
+* **Nancy Shaw** – Temporal Convolutional Network (TCN)
+* **Muskan Sah** – GRU and BiGRU
+* **Muskan** – LSTM and BiLSTM
 
-Each model was independently optimized through hyperparameter tuning while maintaining the same preprocessing pipeline.
-
----
-
-## TCN Results
-
-A comparative analysis of three TCN configurations was conducted by varying channel width and dropout while keeping the remaining architecture fixed.
-
-The experiments demonstrated that:
-
-* The best-performing configuration used 64 channels with a dropout rate of 0.3.
-* Test Accuracy reached approximately 90.86%.
-* Test Macro F1 reached approximately 90.06%.
-* Reducing channel width decreased overall performance.
-* Increasing dropout improved validation performance but did not consistently improve test performance.
-
-The results suggested that limited training samples per class remained the primary bottleneck rather than excessive model capacity.
+Each architecture underwent independent hyperparameter tuning while keeping the preprocessing pipeline unchanged.
 
 ---
 
-## LSTM and BiLSTM Results
+## Experimental Results
 
-Extensive hyperparameter tuning was performed using different hidden dimensions, numbers of recurrent layers, dropout values, and random seeds.
+The team presented the comparative performance of all investigated architectures.
 
-The strongest BiLSTM configuration achieved:
+### Temporal Convolutional Network (TCN)
 
-* Approximately 86.77% Test Accuracy
-* Approximately 87.90% Validation Accuracy
-* Controlled overfitting with a relatively small train-validation gap
-
-Reducing network depth proved more beneficial than increasing model complexity.
-
----
-
-## BiGRU Results
-
-Multiple BiGRU configurations were evaluated using different hidden sizes, dropout values, learning rates, weight decay values, and random seeds.
+Multiple TCN configurations were evaluated by varying channel width and dropout.
 
 The best-performing configuration achieved:
 
-* Approximately 88.25% Test Accuracy
-* Approximately 86.95% Validation Accuracy
-* Approximately 87.66% Macro F1-Score
+* Test Accuracy: **90.86%**
+* Test Macro F1-Score: **90.06%**
+* Validation Macro F1-Score: **90.11%**
 
-The experiments demonstrated stable generalization while maintaining controlled overfitting.
+The results demonstrated that reducing channel width negatively affected performance, while increasing dropout improved validation performance but did not consistently improve generalization.
+
+---
+
+### LSTM and BiLSTM
+
+Extensive hyperparameter tuning was performed using different hidden sizes, numbers of recurrent layers, dropout values, and random seeds.
+
+The best-performing BiLSTM configuration achieved:
+
+* Test Accuracy: **86.77%**
+* Validation Accuracy: **87.90%**
+* Macro Precision: **87.86%**
+* Macro F1-Score: **85.40%**
+
+Reducing network depth proved more effective than increasing model complexity for controlling overfitting.
+
+---
+
+### GRU and BiGRU
+
+Multiple configurations were evaluated using different hidden sizes, dropout values, learning rates, weight decay values, and random seeds.
+
+The best-performing BiGRU model achieved:
+
+* Test Accuracy: **88.25%**
+* Validation Accuracy: **86.95%**
+* Macro F1-Score: **87.66%**
+
+The model demonstrated stable performance while maintaining controlled overfitting.
 
 ---
 
 ## Discussion
 
-The comparative study showed that maintaining a consistent preprocessing pipeline enabled a fair evaluation of different temporal architectures.
+The comparative experiments showed that maintaining an identical preprocessing pipeline enabled a fair comparison between different temporal architectures.
 
-Among all evaluated models, the TCN architecture achieved the strongest overall performance and demonstrated superior generalization on the refined landmark dataset.
+Among all evaluated models, the Temporal Convolutional Network (TCN) demonstrated the strongest overall performance and the best generalization on the refined 129-class landmark dataset.
 
-The meeting also highlighted the importance of carefully designing landmark-level augmentation, as inappropriate augmentation strategies can negatively influence model learning.
+The meeting also emphasized the importance of correctly implementing landmark-level augmentation, as improper augmentation strategies can negatively impact model learning.
+
+---
+
+## Research Paper Guidance
+
+The project supervisor also provided guidance on preparing the research paper in a clear, well-documented, and reproducible manner.
+
+The key recommendations included:
+
+* Present experiments in a systematic and logical sequence.
+* Compare models using identical preprocessing and evaluation settings.
+* Support conclusions using multiple evaluation metrics rather than accuracy alone.
+* Clearly justify architectural choices and hyperparameter decisions.
+* Document preprocessing, augmentation, and evaluation procedures to improve reproducibility.
+* Organize the paper with well-defined sections covering methodology, experiments, results, and discussion.
+* Explain how each experimental finding influenced subsequent research decisions.
 
 ---
 
 ## Decisions Taken
 
-* Continue using the corrected preprocessing pipeline.
-* Adopt the improved augmentation strategy for future experiments.
-* Continue development using the TCN architecture as the primary model.
-* Use the remaining architectures as baseline comparisons.
+* Continue with the corrected preprocessing and augmentation pipeline.
+* Select the TCN architecture as the primary model for further development.
+* Use LSTM, BiLSTM, GRU, and BiGRU as comparative baseline models.
+* Begin organizing experiments and documentation for inclusion in the research paper.
 
 ---
 
@@ -107,5 +130,6 @@ The meeting also highlighted the importance of carefully designing landmark-leve
 
 * Finalize the TCN architecture.
 * Perform additional validation experiments.
-* Prepare the final comparative analysis.
-* Begin integrating the experimental findings into the research paper.
+* Complete the comparative analysis of all evaluated models.
+* Continue documenting experiments and results in a structured manner.
+* Begin drafting the research paper using the documented methodology, experiments, and evaluation results.
