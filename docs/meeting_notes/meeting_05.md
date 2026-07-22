@@ -37,8 +37,8 @@ This ensured that every model was trained and evaluated under identical data pre
 The experimentation was divided among different temporal architectures.
 
 * **Nancy Shaw** – Temporal Convolutional Network (TCN)
-* **Muskan Sah** – GRU and BiGRU
-* **Muskan** – LSTM and BiLSTM
+* **Muskan Sah** – BiGRU + Attention
+* **Muskan** – LSTM and BiLSTM + Attention
 
 Each architecture underwent independent hyperparameter tuning while keeping the preprocessing pipeline unchanged.
 
@@ -77,7 +77,7 @@ Reducing network depth proved more effective than increasing model complexity fo
 
 ---
 
-### GRU and BiGRU
+### BiGRU
 
 Multiple configurations were evaluated using different hidden sizes, dropout values, learning rates, weight decay values, and random seeds.
 
@@ -121,7 +121,7 @@ The key recommendations included:
 
 * Continue with the corrected preprocessing and augmentation pipeline.
 * Select the TCN architecture as the primary model for further development.
-* Use LSTM, BiLSTM, GRU, and BiGRU as comparative baseline models.
+* Use LSTM, BiLSTM, and BiGRU as comparative baseline models.
 * Begin organizing experiments and documentation for inclusion in the research paper.
 
 ---
