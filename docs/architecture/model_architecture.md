@@ -8,7 +8,6 @@ The evaluated architectures include:
 
 * LSTM with Attention
 * BiLSTM with Attention
-* GRU with Attention
 * BiGRU with Attention
 * Temporal Convolutional Network (TCN)
 
@@ -118,7 +117,7 @@ Softmax Classifier
 
 ---
 
-## GRU / BiGRU
+## BiGRU
 
 The GRU-based architectures replace LSTM memory cells with Gated Recurrent Units to reduce model complexity while preserving temporal learning capability.
 
@@ -128,7 +127,7 @@ Input
 
 ↓
 
-GRU / BiGRU
+BiGRU
 
 ↓
 
